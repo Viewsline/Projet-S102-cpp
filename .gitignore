@@ -5,8 +5,6 @@
 *.exe
 *.out
 *.app
-bin/
-obj/
 
 # Dossiers de build CMake
 cmake-build-*/
@@ -19,9 +17,6 @@ Makefile
 *.layout
 *.depend
 *.cbp.bak
-
-# Bibliothèques (SDL2, etc.)
-SDL2/
 
 # Dossiers IDE
 .idea/
