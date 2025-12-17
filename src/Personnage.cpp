@@ -54,5 +54,5 @@ void Personnage::regarderGauche() {
     _dirc = GAUCHE;
 }
 
-
+//fgrefzr
 

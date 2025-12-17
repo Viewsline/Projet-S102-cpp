@@ -5,6 +5,7 @@
 #include "Personnage.h"
 
 using namespace std;
+//fhdkhgrefg
 
 int main(int, char**) // Version special du main, ne pas modifier
 {
