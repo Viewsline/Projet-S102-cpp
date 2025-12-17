@@ -5,7 +5,6 @@
 #include "Personnage.h"
 
 using namespace std;
-//fhdkhgrefg
 
 int main(int, char**) // Version special du main, ne pas modifier
 {
@@ -18,7 +17,9 @@ int main(int, char**) // Version special du main, ne pas modifier
   Image coffre_ouvert(moteur,"./assets/coffre_ouvert.png");
   Image personnage_simple(moteur,"assets/personnages.png");
 
-  Personnage chevalier(0,0, personnage_simple,3);
+  Avatar chevalier(0,0, personnage_simple,4, 1, 0);
+  Ennemi squelette(5,0, personnage_simple,4, 3, 0);
+  Ennemi spider(0,5, personnage_simple,4, 3, 1);
 
   bool coffre_etat = false; // false si coffre ferme et true si coffre ouvert
   bool quitter = false;
@@ -39,23 +40,23 @@ int main(int, char**) // Version special du main, ne pas modifier
         case QUITTER_APPUYE:
           quitter = true;
           break;
-        case ESPACE_APPUYE:
+        /*case ESPACE_APPUYE:
             // coffre_etat = true;
             break;
         case ESPACE_RELACHE:
             coffre_etat = false;
-            break;
+            break;*/
         case BAS_APPUYE:
-            chevalier.regarderBas();
+            //chevalier.regarderBas();
             break;
         case HAUT_APPUYE:
-            chevalier.regarderHaut();
+            //chevalier.regarderHaut();
             break;
         case DROITE_APPUYE:
-            chevalier.regarderDroite();
+            //chevalier.regarderDroite();
             break;
         case GAUCHE_APPUYE:
-            chevalier.regarderGauche();
+            //chevalier.regarderGauche();
             break;
 
         // TODO: gerer les autres evenements
@@ -83,6 +84,8 @@ int main(int, char**) // Version special du main, ne pas modifier
     }*/
 
     chevalier.dessiner();
+    squelette.dessiner();
+    spider.dessiner();
 
     /*if (y==120){       // quest 9 pas fini
         while (y!=0){  // car litteralement il fait la meme chose que la question 8 a cause de la boucle while
