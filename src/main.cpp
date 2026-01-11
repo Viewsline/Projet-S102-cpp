@@ -3,62 +3,22 @@
 #include "Moteur.h"
 #include "Image.h"
 #include "Personnage.h"
-#include "Dictionnaire.h"
-#include "Niveau.h"
 
 using namespace std;
-
-void tests() { // Test des cas de recherche du Q.7
-  Dictionnaire dict("./assets/dictionnaire.txt");
-  bool ok;
-  Tuile cible;
-  ok = dict.recherche("Arbre_1", cible);
-
-  if (!ok) {
-    cout << "Erreur: Arbre_1 existe, alors que l'algo dit le contraire" << endl;
-    return;
-  }
-  cout << "Test Arbre_1 PASSÉ" << endl;
-  cible.afficher();
-
-  ok = dict.recherche("Blahblahblah", cible);
-
-  if (ok) {
-    cout << "Erreur: Blahblahblah n'existe pas, alors que l'algo dit le contraire" << endl;
-    return;
-  }
-  cout << "Test Blahblahblah PASSÉ" << endl;
-
-}
-
-// Q.8
-/*
-Le nom de l'algo de recherche est une recherche dichotomique
-*/
+//fhdkhgrefg
 
 int main(int, char**) // Version special du main, ne pas modifier
 {
-
-  tests();
-
   // Initialisation du jeu
-  Moteur moteur("Mon super jeu vidéo", 4); //Q.24
+  Moteur moteur("Mon super jeu vidéo");
 
   // TODO: charger images, creer personnages, etc.
   Image background(moteur,"./assets/fond.png");
   Image coffre_ferme(moteur,"./assets/coffre_ferme.png");
   Image coffre_ouvert(moteur,"./assets/coffre_ouvert.png");
-  Image personnage_simple(moteur,"./assets/personnages.png");
-  Image imgObjets(moteur, "./assets/objets.png");
+  Image personnage_simple(moteur,"assets/personnages.png");
 
-  Avatar chevalier(1,1, personnage_simple,BAS, 1, 0);
-  Ennemi squelette(5,2, personnage_simple, DROITE, 3, 0);
-  Ennemi spider(8,5, personnage_simple,HAUT, 3, 1);
-
-  Dictionnaire dict("./assets/dictionnaire.txt");
-  Niveau niveau(imgObjets, "assets/niveau.txt", dict);
-
-  dict.afficher();
+  Personnage chevalier(0,0, personnage_simple,3);
 
   bool coffre_etat = false; // false si coffre ferme et true si coffre ouvert
   bool quitter = false;
@@ -79,27 +39,23 @@ int main(int, char**) // Version special du main, ne pas modifier
         case QUITTER_APPUYE:
           quitter = true;
           break;
-        /*case ESPACE_APPUYE:
+        case ESPACE_APPUYE:
             // coffre_etat = true;
             break;
         case ESPACE_RELACHE:
             coffre_etat = false;
-            break;*/
+            break;
         case BAS_APPUYE:
-            chevalier.allerBas(niveau);
-            //chevalier.regarderBas();
+            chevalier.regarderBas();
             break;
         case HAUT_APPUYE:
-            chevalier.allerHaut(niveau);
-            //chevalier.regarderHaut();
+            chevalier.regarderHaut();
             break;
         case DROITE_APPUYE:
-            chevalier.allerDroite(niveau);
-            //chevalier.regarderDroite();
+            chevalier.regarderDroite();
             break;
         case GAUCHE_APPUYE:
-            chevalier.allerGauche(niveau);
-            //chevalier.regarderGauche();
+            chevalier.regarderGauche();
             break;
 
         // TODO: gerer les autres evenements
@@ -120,27 +76,13 @@ int main(int, char**) // Version special du main, ne pas modifier
 
     // TODO: afficher vos personnages, objets, etc.
     background.dessiner(0,0);
-    niveau.dessiner();
     /*if (coffre_etat){
         coffre_ouvert.dessiner(x,y++);
     }else{
         coffre_ferme.dessiner(x,y++);
     }*/
 
-    //Q.24
-    if (moteur.animationsAmettreAjour()) {
-      squelette.avancer(niveau);
-      spider.avancer(niveau);
-    }
-
-    if (chevalier.touche(squelette) || chevalier.touche(spider)) {
-      //C'est perdu, Q.25
-      quitter = true;
-    }
-
     chevalier.dessiner();
-    squelette.dessiner();
-    spider.dessiner();
 
     /*if (y==120){       // quest 9 pas fini
         while (y!=0){  // car litteralement il fait la meme chose que la question 8 a cause de la boucle while
