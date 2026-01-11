@@ -14,6 +14,12 @@ CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
+build/
+s102.depend
+s102.cbp
+s102.layout
+CMakeLists.txt
+
 
 # Dossiers de build Code::Blocks
 *.layout
